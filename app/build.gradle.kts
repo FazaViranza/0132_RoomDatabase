@@ -47,6 +47,14 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     //items
     implementation (libs.compose.icons)
+    //Room
+    implementation (libs.bundles.room)
+    ksp(libs.room.compiler)
+    //ViewModel
+    implementation(libs.lifecycle.viewmodel.compose)
+    implementation(libs.lifecycle.runtime.compose)
+    //Navigaasi
+    implementation(libs.navigation.compose)
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
