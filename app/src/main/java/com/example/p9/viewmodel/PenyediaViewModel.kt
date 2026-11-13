@@ -1,27 +1,23 @@
 package com.example.p9.viewmodel
 
-import androidx.lifecycle.ViewModel
+import android.app.Application
 import androidx.lifecycle.ViewModelProvider
-import com.example.p9.repositori.AppContainer
+import androidx.lifecycle.createSavedStateHandle
+import androidx.lifecycle.viewmodel.CreationExtras
+import androidx.lifecycle.viewmodel.initializer
+import androidx.lifecycle.viewmodel.viewModelFactory
+import com.example.p9.AplikasiSiswa
 
-class PenyediaViewModel(
-    private val container: AppContainer
-) : ViewModelProvider.Factory {
-
-    @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return when {
-            modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
-                HomeViewModel(container.repositoriSiswa) as T
-            }
-
-            modelClass.isAssignableFrom(EntryViewModel::class.java) -> {
-                EntryViewModel(container.repositoriSiswa) as T
-            }
-
-            else -> throw IllegalArgumentException(
-                "Unknown ViewModel class: ${modelClass.name}"
-            )
+object PenyediaViewModel {
+    val Factory = viewModelFactory {
+        initializer {
+            HomeViewModel(aplikasiSiswa().container.repositoriSiswa)
+        }
+        initializer {
+            EntryViewModel(aplikasiSiswa().container.repositoriSiswa)
         }
     }
 }
+
+fun CreationExtras.aplikasiSiswa(): AplikasiSiswa =
+    (this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as AplikasiSiswa)

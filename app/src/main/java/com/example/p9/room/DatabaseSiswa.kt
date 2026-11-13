@@ -16,7 +16,7 @@ abstract class DatabaseSiswa : RoomDatabase() {
         fun getDatabase(context: Context): DatabaseSiswa {
             return (Instance ?: synchronized(this) {
                 Room.databaseBuilder(
-                    context,
+                    context.applicationContext,
                     DatabaseSiswa::class.java,
                     "siswa_database"
                 )

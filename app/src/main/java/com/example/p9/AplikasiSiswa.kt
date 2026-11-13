@@ -1,15 +1,14 @@
 package com.example.p9
 
 import android.app.Application
-import com.example.p9.repositori.AppContainer
-import com.example.p9.repositori.DefaultAppContainer
+import com.example.p9.repositori.ContainerApp
+import com.example.p9.repositori.ContainerDataApp
 
 class AplikasiSiswa : Application() {
-
-    lateinit var container: AppContainer
+    lateinit var container: ContainerApp
 
     override fun onCreate() {
         super.onCreate()
-        container = DefaultAppContainer(this)
+        container = ContainerDataApp(this)
     }
 }
