@@ -1,7 +1,5 @@
 package com.example.p9.uicontroller
 
-package com.example.roomdb.uicontroller
-
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -17,14 +15,14 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.roomdb.R
-import com.example.roomdb.view.DestinasiEntry
-import com.example.roomdb.view.DestinasiHome
-import com.example.roomdb.view.EntrySiswaScreen
-import com.example.roomdb.view.HomeScreen
+import com.example.p9.R
+import com.example.p9.view.EntrySiswaScreen
+import com.example.p9.view.HomeScreen
 
 @Composable
-fun SiswaApp(navController: NavHostController = rememberNavController()){
+fun SiswaApp(
+    navController: NavHostController = rememberNavController()
+) {
     HostNavigasi(navController = navController)
 }
 
@@ -37,7 +35,8 @@ fun SiswaTopAppBar(
     scrollBehavior: TopAppBarScrollBehavior? = null,
     navigateUp: () -> Unit = {}
 ) {
-    CenterAlignedTopAppBar(title = { Text(title) },
+    CenterAlignedTopAppBar(
+        title = { Text(title) },
         modifier = modifier,
         scrollBehavior = scrollBehavior,
         navigationIcon = {
@@ -49,23 +48,34 @@ fun SiswaTopAppBar(
                     )
                 }
             }
-        })
+        }
+    )
 }
 
 @Composable
 fun HostNavigasi(
     navController: NavHostController,
     modifier: Modifier = Modifier
-){
-    NavHost(navController=navController, startDestination = DestinasiHome.route, modifier = Modifier)
-    {
-        composable(DestinasiHome.route){
+) {
+    NavHost(
+        navController = navController,
+        startDestination = DestinasiHome.route,
+        modifier = modifier
+    ) {
+        composable(DestinasiHome.route) {
             HomeScreen(
-                navigateToItemEntry = {navController.navigate(DestinasiEntry.route)},
+                navigateToItemEntry = {
+                    navController.navigate(DestinasiEntry.route)
+                }
             )
         }
-        composable(DestinasiEntry.route){
-            EntrySiswaScreen(navigateBack = { navController.popBackStack()})
+
+        composable(DestinasiEntry.route) {
+            EntrySiswaScreen(
+                navigateBack = {
+                    navController.popBackStack()
+                }
+            )
         }
     }
 }
